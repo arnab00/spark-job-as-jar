@@ -1,0 +1,5 @@
+set HADOOP_HOME=C:\spark\hadoop-3.2.2
+
+cd C:\spark\spark-3.3.0-bin-hadoop3
+
+bin\spark-submit --class "it.biswas.spark.SparkJobAsJarApplication" --master local[2] target/spark-job-as-jar-1.0.0.jar

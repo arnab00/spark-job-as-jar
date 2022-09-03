@@ -1,0 +1,42 @@
+plugins {
+	id 'com.github.johnrengelman.shadow' version '7.1.2'
+	id 'java'
+}
+
+group = 'it.biswas'
+version = '1.0.0'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "it.biswas.spark.SparkJobAsJarApplication"
+    }
+}
+
+shadowJar {
+zip64=true
+}
+
+dependencies {
+	compileOnly 'org.projectlombok:lombok:+'
+	annotationProcessor 'org.projectlombok:lombok:+'
+	
+	implementation 'org.apache.spark:spark-sql_2.12:3.3.0'
+	
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:+'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:+'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
